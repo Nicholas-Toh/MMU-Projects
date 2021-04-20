@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cinemax - Showtime</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/ShowtimePage.css'>
+</head>
+<body>
+    <?php
+        require_once("MainPageHeader.php");
+	?>
+    <div id="showBanner">
+        <img class="left-arrow-img" src="./assets/previous.png" onclick="plusDivs(-1)" />
+        <img class="mySlides" src="./assets//Promotion-news-page/promo1.png">
+        <img class="mySlides" src="./assets//Promotion-news-page/promo2.png">
+        <img class="mySlides" src="./assets//Promotion-news-page/promo3.png">
+        <img class="right-arrow-img" src="./assets/next.png" onclick="plusDivs(1)"/>
+    </div>
+    <div id="showtimeSection">
+        <div id="dateTab">
+            <?php
+                echo '<button class="tablink" onclick="openPage('."'{$datestr}'".', this)" id="defaultOpen">'.date_format($date, 'l').'<br>'.date_format($date, 'Y-m-d').'</button>';
+                echo '<button class="tablink" onclick="openPage('."'{$date2str}'".', this)">'.date_format($date2, 'l').'<br>'.date_format($date2, 'Y-m-d').'</button>';
+                echo '<button class="tablink" onclick="openPage('."'{$date3str}'".', this)">'.date_format($date3, 'l').'<br>'.date_format($date3, 'Y-m-d').'</button>';
+                echo '<button class="tablink" onclick="openPage('."'{$date4str}'".', this)">'.date_format($date4, 'l').'<br>'.date_format($date4, 'Y-m-d').'</button>';
+                echo '<button class="tablink" onclick="openPage('."'{$date5str}'".', this)">'.date_format($date5, 'l').'<br>'.date_format($date5, 'Y-m-d').'</button>';
+            ?>
+        </div>
+        <form action="SeatSelection.php" method="post">
+        <?php echo "<div id='$datestr' class='tabcontent'>"; ?>
+            <?php
+                if(count($dateShowtime)){
+                    for($i = 0; $i < count($dateShowtime); $i++){
+                        $movieId = $dateShowtime[$i][0]['movie_id'];
+                        $movie = array();
+                        for($j = 0; $j < count($movieList); $j++){
+                            if($movieList[$j]['id'] == $movieId){
+                                $movie = $movieList[$j];
+                            }
+                        }
+                        echo '<div class="showContainer" id="'.$movie['name'].'">';
+                        echo '  <div class="detailContainer">';
+                        echo '      <img src="./assets/movie-posters/'.$movie['poster'].'"/>';
+                        echo '      <button class="detailButton" type="button" onclick="on('."'{$movieList[$i]['name']}-Overlay'".')" >Details</button>';
+                        echo '  </div>';
+                        echo '  <div class="showtimeContainer">';
+                        for($k=0; $k < count($dateShowtime[$i]); $k++){
+                            echo '      <button class="showtimeButton" type="submit" name="session" value='.$dateShowtime[$i][$k]['id'].' >'.$dateShowtime[$i][$k]['showtime'].'</button>';
+                        }
+                        echo '  </div>';
+                        echo '</div>';
+                    }
+                }else{
+                    echo '<p> No Show Today.</p>';
+                }
+
+            ?>
+        </div>
+        <?php echo "<div id='$date2str' class='tabcontent'>"; ?>
+            <?php
+                if(count($date2Showtime)){
+                    for($i = 0; $i < count($date2Showtime); $i++){
+                        $movieId = $date2Showtime[$i][0]['movie_id'];
+                        $movie = array();
+                        for($j = 0; $j < count($movieList); $j++){
+                            if($movieList[$j]['id'] == $movieId){
+                                $movie = $movieList[$j];
+                            }
+                        }
+                        echo '<div class="showContainer">';
+                        echo '  <div class="detailContainer">';
+                        echo '      <img src="./assets/movie-posters/'.$movie['poster'].'"/>';
+                        echo '      <button class="detailButton" type="button" onclick="on('."'{$movieList[$i]['name']}-Overlay'".')" >Details</button>';
+                        echo '  </div>';
+                        echo '  <div class="showtimeContainer">';
+                        for($k=0; $k < count($date2Showtime[$i]); $k++){
+                            echo '      <button class="showtimeButton" type="submit" name="session" value='.$date2Showtime[$i][$k]['id'].' >'.$date2Showtime[$i][$k]['showtime'].'</button>';
+                        }
+                        echo '  </div>';
+                        echo '</div>';
+                    }
+                }else{
+                    echo '<p> No Show Today.</p>';
+                }
+
+            ?>
+        </div>
+        <?php echo "<div id='$date3str' class='tabcontent'>"; ?>
+            <?php
+                if(count($date3Showtime)){
+                    for($i = 0; $i < count($date3Showtime); $i++){
+                        $movieId = $date3Showtime[$i][0]['movie_id'];
+                        $movie = array();
+                        for($j = 0; $j < count($movieList); $j++){
+                            if($movieList[$j]['id'] == $movieId){
+                                $movie = $movieList[$j];
+                            }
+                        }
+                        echo '<div class="showContainer">';
+                        echo '  <div class="detailContainer">';
+                        echo '      <img src="./assets/movie-posters/'.$movie['poster'].'"/>';
+                        echo '      <button class="detailButton" type="button" onclick="on('."'{$movieList[$i]['name']}-Overlay'".')" >Details</button>';
+                        echo '  </div>';
+                        echo '  <div class="showtimeContainer">';
+                        for($k=0; $k < count($date3Showtime[$i]); $k++){
+                            echo '      <button class="showtimeButton" type="submit" name="session" value='.$date3Showtime[$i][$k]['id'].' >'.$date3Showtime[$i][$k]['showtime'].'</button>';
+                        }
+                        echo '  </div>';
+                        echo '</div>';
+                    }
+                }else{
+                    echo '<p> No Show Today.</p>';
+                }
+
+            ?>
+        </div>
+        <?php echo "<div id='$date4str' class='tabcontent'>"; ?>
+            <?php
+                if(count($date4Showtime)){
+                    for($i = 0; $i < count($date4Showtime); $i++){
+                        $movieId = $date4Showtime[$i][0]['movie_id'];
+                        $movie = array();
+                        for($j = 0; $j < count($movieList); $j++){
+                            if($movieList[$j]['id'] == $movieId){
+                                $movie = $movieList[$j];
+                            }
+                        }
+                        echo '<div class="showContainer">';
+                        echo '  <div class="detailContainer">';
+                        echo '      <img src="./assets/movie-posters/'.$movie['poster'].'"/>';
+                        echo '      <button class="detailButton" type="button" onclick="on('."'{$movieList[$i]['name']}-Overlay'".')" >Details</button>';
+                        echo '  </div>';
+                        echo '  <div class="showtimeContainer">';
+                        for($k=0; $k < count($date4Showtime[$i]); $k++){
+                            echo '      <button class="showtimeButton" type="submit" name="session" value='.$date4Showtime[$i][$k]['id'].' >'.$date4Showtime[$i][$k]['showtime'].'</button>';
+                        }
+                        echo '  </div>';
+                        echo '</div>';
+                    }
+                }else{
+                    echo '<p> No Show Today.</p>';
+                }
+
+            ?>
+        </div>
+        <?php echo "<div id='$date5str' class='tabcontent'>"; ?>
+            <?php
+                if(count($date5Showtime)){
+                    for($i = 0; $i < count($date5Showtime); $i++){
+                        $movieId = $date5Showtime[$i][0]['movie_id'];
+                        $movie = array();
+                        for($j = 0; $j < count($movieList); $j++){
+                            if($movieList[$j]['id'] == $movieId){
+                                $movie = $movieList[$j];
+                            }
+                        }
+                        echo '<div class="showContainer">';
+                        echo '  <div class="detailContainer">';
+                        echo '      <img src="./assets/movie-posters/'.$movie['poster'].'"/>';
+                        echo '      <button class="detailButton" type="button" onclick="on('."'{$movieList[$i]['name']}-Overlay'".')" >Details</button>';
+                        echo '  </div>';
+                        echo '  <div class="showtimeContainer">';
+                        for($k=0; $k < count($date5Showtime[$i]); $k++){
+                            echo '      <button class="showtimeButton" type="submit" name="session" value='.$date5Showtime[$i][$k]['id'].' >'.$date5Showtime[$i][$k]['showtime'].'</button>';
+                        }
+                        echo '  </div>';
+                        echo '</div>';
+                    }
+                }else{
+                    echo '<p> No Show Today.</p>';
+                }
+
+            ?>
+        </div>
+        </form>
+        <?php
+            for($i =0; $i < count($movieList); $i++){
+                echo '<div id="'.$movieList[$i]['name'].'-Overlay" class="overlay" onclick="off('."'{$movieList[$i]['name']}-Overlay'".')">';
+                echo '<div class="overlayContainer">';
+                echo '<div class="descriptionContainer">';
+                echo $movieList[$i]['trailer_link'];
+                echo '<div class="descriptionText">';
+                echo '<div class="movieTitle">';
+                echo '<p>'.$movieList[$i]['name'].'</p>';
+                echo '</div>';
+                echo '<div class="sypnosis">';
+                echo '<p>'.$movieList[$i]['description'].'</p>';
+                echo '</div>';
+                echo '<div class="movieDetails">';
+                echo '<p> Rating : '.$movieList[$i]['rating'].'</p></br>';
+                echo '<p> Genre : '.$movieList[$i]['genre'].'</p></br>';
+                echo '<p> Release Date : '.$movieList[$i]['release_date'].'</p>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            }
+        ?>
+    </div>
+    <?php
+        require_once("MainPageFooter.php");
+    ?>
+    <script>
+    var slideIndex = 1;
+        showDivs(slideIndex);
+        
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+    
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+        }
+        x[slideIndex-1].style.display = "block";  
+    }
+    function openPage(pageName, elmnt) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.borderBottom = "";
+            }
+            document.getElementById(pageName).style.display = "flex";
+            elmnt.style.borderBottom = "solid #F55267 3px";
+    }
+    document.getElementById("defaultOpen").click();
+    function on(elemt) {
+        document.getElementById(elemt).style.display = "block";
+    }
+
+    function off(elemt) {
+        document.getElementById(elemt).style.display = "none";
+    }
+    </script>
+
+</body>
+</html>

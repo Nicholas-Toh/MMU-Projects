@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cinemax - Profile</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/jack.css'>
+</head>
+<body>
+    <?php
+		require_once("MainPageHeader.php");
+	?>
+    <div class="centerPosition" style="top:0%; height:75%">
+        <table class="centerPosition">
+            <tr>
+                <td class="halfsize">
+                    <div  class ="fullsize center ">
+                        <h1 style="color: white;">
+                            Profile Page
+                        </h1>
+                        <form method="POST" action="UpdateProfile.php">
+                            <input type="text" class="formField bigLabel" id="userName" name="userName" value="<?php echo $user->userName;?>" required><br>
+                            <input type="email" class="formField bigLabel" id="userEmail" name="userEmail" value="<?php echo $user->email; ?>" required><br>
+                            <input type="text" class="formField bigLabel" id="userNumber" name="userNumber" value="<?php echo $user->phone;?>" required><br>
+                            <input type="submit" class="redButton" value="Change Details">
+                        </form>
+                    </div>
+                </td>
+                <td class="halfsize">
+                    <div  class ="fullsize center "style="height: 20%;" >
+                        <h1 style="color: white;">
+                            Membership Points
+                        </h1>
+                        <h2>
+                            <?php echo $user->membershipPoints;?>
+                        </h2>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div style="height: 80%;">
+                        <table class="fullsize center">
+                            <tr class="fullsize">
+                                <td class="smallTableColumn">
+                                    Date
+                                </td>
+                                <td class="smallTableColumn">
+                                    Movie
+                                </td>
+                                <td class="smallTableColumn">
+                                    Price
+                                </td>
+                            </tr>
+                            <?php if(!empty($purchaseHistory)){
+                                    foreach($purchaseHistory as $value){
+                            ?>    
+                                        <tr>
+                                            <td class="smallTableColumn">
+                                                <?php echo date('d/m/Y',strtotime($value["timestamp"]));?>  
+                                            </td>
+                                            <td class="smallTableColumn">
+                                                <?php echo $value["movie"];?>
+                                            </td>
+                                            <td class="smallTableColumn">
+                                                <?php echo $value["total_price"];?>
+                                            </td>
+                                        </tr>
+                            <?php   }
+                                }
+                            ?>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <?php
+        require_once("MainPageFooter.php");
+    ?>
+</body>
+</html>

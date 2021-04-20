@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cinemax - Home</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/HomePage.css'>
+</head>
+<body>
+    <?php
+		require_once("MainPageHeader.php");
+	?>
+    <div id="showBanner">
+        <img class="left-arrow-img" src="./assets/previous.png" onclick="plusDivs(-1)" />
+        <img class="mySlides" src="./assets/promotion-news-page/promo1.png">
+        <img class="mySlides" src="./assets/promotion-news-page/promo2.png">
+        <img class="mySlides" src="./assets/promotion-news-page/promo3.png">
+        <img class="right-arrow-img" src="./assets/next.png" onclick="plusDivs(1)"/>
+    </div>
+    <div id="movieSection">
+        <div id="movieTab">
+            <button class="tablink" onclick="openPage('nowShowingTab', this)" id="defaultOpen">Now Showing</button>
+            <button class="tablink" onclick="openPage('upcomingTab', this)">Upcoming</button>
+        </div>
+        <div id="nowShowingTab" class="tabcontent">
+          <?php 
+              for($i=0 ; $i< count($nowShowing); $i++){
+                echo '<a href="Showtime.php#'.$nowShowing[$i][2].'"><img src="./assets/movie-posters/'.$nowShowing[$i][1].'"/></a>';
+              }
+          ?>
+        </div>
+        <div id="upcomingTab" class="tabcontent">
+          <?php
+              for($i=0 ; $i< count($upcoming); $i++){
+                echo '<a><img src="./assets/movie-posters/'.$upcoming[$i][1].'"/></a>';
+              }
+          ?>
+        </div>          
+    </div>
+    <?php
+		require_once("MainPageFooter.php");
+	?>
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+        
+        function plusDivs(n) {
+          showDivs(slideIndex += n);
+        }
+        
+        function showDivs(n) {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          if (n > x.length) {slideIndex = 1}
+          if (n < 1) {slideIndex = x.length}
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+          }
+          x[slideIndex-1].style.display = "block";  
+        }
+        function openPage(pageName, elmnt) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.borderBottom = "";
+            }
+            document.getElementById(pageName).style.display = "flex";
+            elmnt.style.borderBottom = "solid #F55267 3px";
+        }
+        document.getElementById("defaultOpen").click();
+    </script>
+</body>
+</html>

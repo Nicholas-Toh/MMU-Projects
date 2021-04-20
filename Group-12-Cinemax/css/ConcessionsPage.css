@@ -1,0 +1,139 @@
+header{
+  position: relative;
+}
+
+
+.selected_movie {
+  padding-top: 15px;
+  padding-left: 40px;
+  position: relative;
+}
+
+.selected_movie_poster {
+
+}
+
+.selected_movie_details {
+  position: absolute;
+  top: 5px;
+  left: 180px;
+  line-height: 1.8;
+}
+
+
+.selected_movie_poster {
+  width: 130px;
+}
+
+
+
+
+
+.ticket-Purchased{
+  display: inline-block;
+  text-align: left;
+}
+
+
+.selecSummaryTable{
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.concessionImage{
+  width: 220px;
+  margin: 0em 0px 1em 0px;
+}
+
+.concessionImageTable{
+  margin-left: auto;
+  margin-right: auto;
+  border-spacing: 40px;
+}
+
+
+.Continue-button{
+  color: white;
+  padding: 8px 26px;
+  background-color: #F55267;
+  border-color: #F55267;
+  font-size: 16px;
+}
+
+.Continue-button:hover{
+  background: #F46E85;
+  border-color: #F46E85;
+}
+
+.button-div{
+text-align: center;
+}
+
+#bookingDescription
+{
+	display: block;
+	margin: 0.2vw auto 0vw auto;
+	width: 950px;
+	color: white;
+	font-size: 1.1em;
+}
+
+#moviePoster
+{
+	height: 200px;
+	float:left;
+	margin-right: 20px;
+}
+
+#foodSelection
+{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#foodSelection > *
+{
+	flex: 0 1 auto;
+}
+
+.foodItem
+{
+	margin: 0em 0px 2em 0px;
+	text-align:center;
+	border:3px #F55267 solid;
+	padding: 0.8em;
+	width: 13em;
+}
+
+.foodItem p
+{
+	color: #F55267;
+}
+
+.selectionSummary *
+{
+	color:white;
+}
+
+
+#orderForm
+{
+	width:100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+.blank{
+
+}

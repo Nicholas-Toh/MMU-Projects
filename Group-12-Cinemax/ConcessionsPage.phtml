@@ -1,0 +1,103 @@
+<html>
+<head>
+	<script type="text/javascript">
+		var selectedFoodItems = 
+		{
+			foodIds: {},
+			foodTotal: 0.00,
+			numFoodSelected: function()
+			{
+				let total = 0;
+				for (let id of Object.keys(this.foodIds))
+				{
+					total += this.foodIds[id];
+				}
+				return total;
+			},
+		}
+			
+		function selectFoodItem(element, itemId)
+		{
+			var noOfFood = parseInt(element.value);
+			var itemPrice = parseFloat(document.getElementById("foodPrice"+itemId).innerHTML);
+			if (isNaN(noOfFood))
+			{
+				noOfFood = 0;
+			}
+			
+			if (selectedFoodItems.foodIds.hasOwnProperty(itemId))
+				selectedFoodItems.foodTotal -= selectedFoodItems.foodIds[itemId] * itemPrice;
+			
+			selectedFoodItems.foodIds[itemId] = noOfFood;
+			selectedFoodItems.foodTotal = selectedFoodItems.foodTotal + (noOfFood * itemPrice);
+			totalFood.innerText = selectedFoodItems.numFoodSelected();
+			foodPrice.innerText = selectedFoodItems.foodTotal;
+
+		}
+	</script>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cinemax - Concessions</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' href='css/ConcessionsPage.css'>
+</head>
+<body>
+    <?php
+		require_once("MainPageHeader.php");
+	?>
+	<div class="pageTitleContainer" id="title">
+		<p class="pageTitle">SELECT FOOD AND DRINKS</p>
+	</div>
+    <!-- Selected Movie Details -->
+  <div id="bookingDescription">
+		<img src="<?=$assetsPath?>/movie-posters/<?=$posterPath?>" id="moviePoster">
+		<div id="movieDetails">
+			<p id="movieTitle"><?=$movieName?></p>
+			<p>Showtime: <?php echo date('h:i a', strtotime($showtime)); ?></p>
+			<p>Date: <?php echo date('d F, Y', strtotime($date)); ?></p>
+			<p>Hall: <?=$hallName?></p>
+			<p>Seat no.: <?php foreach($seats as $seat) {echo $seat["seat_row"].$seat["seat_number"].' ';}?></p>
+		</div>
+
+		<div class="selectionSummary">
+		  <table class="selecSummaryTable">
+			<tr class="selecSummaryTable_row">
+			  <td>
+				<p class="food-Purchased">
+				  <span style="padding-right: 0px;"> No of food packages</span>: <span id="totalFood">0</span> <br />
+				  <span style="padding-right: 0px;"> Price</span>: RM <span id="foodPrice">0</span>
+				</p>
+			  </td>
+			</tr>
+		  </table>
+		</div>
+				
+		
+		<form id="orderForm" action="commit_food_order.php" method="POST">
+			<div id="foodSelection">
+					<?php foreach($foodItems as $foodItem){?>
+						<div class="foodItem" id="<?=$foodItem["id"]?>">
+							<img src='assets/concession-graphics/<?=$foodItem["image_path"]?>' alt='concession picture' class='concessionImage'>
+							<br />
+							<span style='color:white;'><?=$foodItem["name"]?></span>
+							<br />
+							RM <span style='color:white;' id="foodPrice<?=$foodItem["id"]?>"><?=$foodItem["price"]?></span>
+							<p>Quantity</p>
+							<input type='number' id='1' onchange='selectFoodItem(this, this.parentElement.id)' name='ids[<?=$foodItem["id"]?>]' min='0' max='10' value='0'> 
+							</td>
+						</div>
+					<?php }?>
+			</div>
+			<div class="button-div">
+				<input type="submit" class='Continue-button' value="Continue">
+			</div>
+		</form>
+	</div>
+	
+	
+	
+    <?php
+		require_once("MainPageFooter.php");
+	?>
+</body>
+</html>

@@ -1,0 +1,96 @@
+#bigTitle
+{
+	width:50em;
+}
+#paymentStatus
+{
+	color: white;
+	size: 4em;
+	font-size: 3.5em;
+}
+
+#homeButton
+{
+	display:block;
+	margin: 2em auto;
+	font-family: Arial, sans-serif;
+    font-size: 1em;
+    color: white;
+    background-color: #F55267;
+    border-radius: 5px;
+	clear: both;
+	outline: none;
+	width: 200px;
+	height: 40px;	
+}
+
+#ticketContainer
+{	
+	position:relative;
+}
+
+#ticket 
+{
+	display: block;
+	margin: 4em 0em 4em 0em;
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
+}
+
+.overlay
+{
+	position:absolute;
+	left: 40%;
+	top: 20px;
+}
+
+#movieDetails
+{
+	width: 350px;
+	color: white;
+	font-size: 1.3em;
+}
+
+#ticketButton
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: Arial, sans-serif;
+    font-size: 1em;
+    color: white;
+    background-color: #F55267;
+    border-radius: 5px;
+	clear: both;
+	outline: none;
+	width: 200px;
+	height: 40px;
+}
+
+#reminderText
+{
+	text-align:center;
+	font-family: Arial, sans-serif;
+    font-size: 1em;
+    color: white;
+	clear: both;
+	background-color: green;
+	margin: 2em 0em 2em 0em;
+}  
+
+@media print
+{
+	.overlay
+	{
+		position:absolute;
+		left: 32%;
+		top: 90px;
+	}
+	#movieDetails
+	{
+		width: 950px;
+		color: white;
+		font-size: 1.3em;
+	}
+}

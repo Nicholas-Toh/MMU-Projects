@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		redeemPromo = function(value)
+		{
+			$.post("redeem_code.php",
+			{
+				code: value,
+			},
+			function(response)
+			{
+				console.log(response);
+				var res = JSON.parse(response);
+				console.log(res.newTotal);
+				
+				if (res.promoApplied == true)
+				{
+					document.getElementById("total").innerHTML = 'RM ' + res.newTotal.toFixed(2);
+					document.getElementById("promoSubmit").disabled = true;
+					let redeemMessage = document.getElementById("promoRow").insertCell(-1);
+					redeemMessage.innerHTML = "Redeemed!"
+					redeemMessage.classList.add("infoColumn");
+					document.getElementById("promoDiscount").innerHTML = '- '+res.promoDiscount.toFixed(2);
+				}
+			});
+		}
+		
+		redeemPoints = function(value)
+		{
+			$.post("redeem_points.php",
+			{
+				points: value,
+			},
+			function(response)
+			{
+				console.log(response);
+				var res = JSON.parse(response);
+				console.log(res.newTotal);
+				
+				if (res.pointsRedeemed== true)
+				{
+					document.getElementById("total").innerHTML = 'RM ' + res.newTotal.toFixed(2);
+					document.getElementById("pointsSubmit").disabled = true;
+					document.getElementById("pointsDiscount").innerHTML = '- '+res.pointsDiscount.toFixed(2);
+					document.getElementById("pointsBalance").innerHTML = 'Balance: '+res.pointsLeft + ' points';
+				}
+			});
+		}
+	</script>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cinemax - Order Summary</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel="stylesheet" type="text/css" media='screen' href='css/OrderSummaryPage.css'>
+</head>
+<body>
+    <?php
+		require_once("MainPageHeader.php");
+	?>
+	<div class="pageTitleContainer" id="title">
+		<p class="pageTitle">ORDER SUMMARY </p>
+	</div>
+	
+	<div id="bookingDescription">
+		<img src="<?=$assetsPath?>/movie-posters/<?=$posterPath?>" id="moviePoster">
+		<div id="movieDetails">
+			<p id="movieTitle"><?=$movieName?></p>
+			<p>Showtime: <?php echo date('h:i a', strtotime($showtime)); ?></p>
+			<p>Date: <?php echo date('d F, Y', strtotime($date)); ?></p>
+			<p>Hall: <?=$hallName?></p>
+			<p>Seat no.: <?php foreach($seats as $seat) {echo $seat["seat_row"].$seat["seat_number"].' ';}?></p>
+		</div>
+	</div>
+	
+	<div id="orderSummary">
+		<form id="orderForm" action="Payment.php" method="POST">
+			<table id="summaryTable">
+				<tr>
+					<td colspan="4"  class="tableTitle largePadding">Order Summary</td>
+				</tr>
+				<?php foreach ($tickets as $id => $elem): ?>
+					<tr>
+					
+						<td class="itemName smallPadding">Ticket - <?=$elem["type"]?></td><td class="itemQuantity"><?=$elem["quantity"]?>X</td><td class="itemSubtotal"><?=number_format($ticketSubtotal, 2, '.', '')?></td>
+					</tr>
+				<?php endforeach; ?>
+				<?php foreach ($foods as $id => $elem): ?>
+					<tr>	
+						<td class="itemName smallPadding"><?=$elem["name"]?></td><td class="itemQuantity"><?=$elem["quantity"]?>X</td><td class="itemSubtotal"><?=number_format($elem["price"], 2, '.', '')?></td>
+					</tr>
+				<?php endforeach; ?>
+				<tr>
+					<td colspan="4"><div class="seperator smallPadding"></div></td>
+				</tr>
+				<tr>	
+					<td class="itemName smallPadding">Subtotal</td><td class="itemQuantity"></td><td class="itemSubtotal" id="subtotal"><?=number_format($ticketSubtotal+$foodSubtotal, 2, '.', '')?></td>
+				</tr>
+				<tr id="promoRow">	
+					<td class="itemName smallPadding">Promotional Code</td>
+					<td class="orderQuantity">
+						<input type="text" id="promoField" class="tableField" name="promoField" placeholder="Enter code" size="8">
+						<button type="button" id="promoSubmit" class="tableField" name="promoSubmit" onclick="redeemPromo(document.getElementById('promoField').value)">Redeem</button>
+					</td>
+					<td class="itemSubtotal" id="promoDiscount">0.00</td>
+				</tr>
+				<tr>	
+					<td class="itemName smallPadding">Membership Points</td>
+					<td class="orderQuantity">
+						<input type="number" class="tableField" name="pointsField" id="pointsField" min="0">
+						<button type="button" id="pointsSubmit" class="tableField" name="pointsSubmit" onclick="redeemPoints(document.getElementById('pointsField').value)">Redeem</button>
+					</td>
+					<td class="itemSubtotal" id="pointsDiscount">0.00</td>
+					<td class="infoColumn" id="pointsBalance">Balance: 800 points</td>
+				</tr>
+				<tr>	
+					<td class="orderItem smallPadding">Total</td><td class="orderQuantity"></td><td id="total" class="itemSubtotal">RM <?=number_format($grandTotal, 2, '.', '')?></td>
+				</tr>
+			</table>
+			<input type="submit" id="paymentButton" value="Payment" form="orderForm">
+		</form>
+	</div>
+    <?php
+		require_once("MainPageFooter.php");
+	?>
+</body>
+</html>

@@ -1,0 +1,80 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body {
+    background-color: #3F3F3F;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+.bigLabel {
+	font-size:1.7em;
+}
+
+.formField {
+	background-color:#A1A1A1;
+	margin: 0.4em 0em 0.4em 0em;
+	outline: none;
+	width: 400px;
+}
+
+.redButton {
+	display:block;
+	margin: 1em auto;
+	font-family: Arial, sans-serif;
+    font-size: 1em;
+    color: white;
+    background-color: #F55267;
+    border-radius: 5px;
+	clear: both;
+	outline: none;
+	width: 200px;
+	height: 40px;	
+}
+
+.halfsize{
+    width : 50%;
+    height: auto;
+}
+
+.fullsize{
+    width: 100%;
+}
+
+.center{
+    margin-left: auto;
+    text-align: center;
+}
+
+.centerPosition{
+    position: relative;
+    top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 50%;
+}
+
+.logo{
+    width: 150px;
+    height: auto;
+}
+ 
+h1{
+    display: inline;
+}
+
+.banner{
+    position: relative;
+    width: 80%;
+    height: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.smallTableColumn{
+    width: 30%;
+    color: white;
+}

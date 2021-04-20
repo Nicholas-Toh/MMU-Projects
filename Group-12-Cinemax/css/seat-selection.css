@@ -1,0 +1,144 @@
+
+h1 {
+  text-align: center;
+  color: #F55267;
+}
+
+.selected_movie_poster {
+  width: 130px;
+}
+
+.detailsContainer {
+  color: white;
+  font-family: "Arial", Times, serif;
+  margin-left: 30px ;
+  line-height: 1.5;
+}
+
+#MovieDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#Legend {
+  display: flex;
+  color : white;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.legendContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+
+}
+
+.Available {
+  background-color: #46AA60;
+  height: 40px;
+  width: 40px;
+  margin-right: 15px;
+}
+
+.Selected {
+  background-color: #F55267;
+  height: 40px;
+  width: 40px;
+  margin-right: 15px;
+}
+
+.Sold {
+  background-color: #B2B7B3;
+  height: 40px;
+  width: 40px;
+  margin-right: 15px;
+}
+
+#SeatSelection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#HallScreen {
+  width : 60%;
+}
+
+#ScreenContainer {
+  display: flex;
+  justify-content: center;
+  background-color: #B2B7B3;
+  width: 100%;
+  height: auto;
+}
+
+#TicketPrice span{
+  color: white;
+}
+
+#TicketPrice{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#SeatLayout{
+  margin-top: 20px;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+.seat{
+  display: flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.seat :hover{
+  cursor: pointer;
+}
+
+.available{
+  background-color: #46AA60;
+  cursor: pointer;
+}
+
+.selected{
+  background-color: #F55267;
+  cursor: pointer;
+}
+
+.sold{
+  background-color: #B2B7B3;
+}
+
+#ConfirmContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#ConfirmContainer button{
+  color: white;
+  padding: 8px 26px;
+  background-color: #F55267;
+  border-color: #F55267;
+  font-size: 16px;
+  cursor: pointer;
+}

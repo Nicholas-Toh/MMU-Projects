@@ -1,0 +1,79 @@
+#showBanner {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.mySlides {
+    display:none;
+    width: 50%;
+}
+
+.left-arrow-img {
+    position: relative;
+    left: 25px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+
+}
+
+.right-arrow-img {
+    position: relative;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+
+}
+
+#movieSection{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#movieTab{
+    display: flex;
+    width: 80%;
+
+}
+
+.tablink {
+    background-color: #3F3F3F;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 2vw;
+    width: 50%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tablink:hover {
+    border-bottom: solid #F55267 3px;
+}
+
+.tabcontent {
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.tabcontent a img{
+    width: 100%;
+    height: auto;
+}
+
+.tabcontent a {
+    width: 15%;
+    margin:5px;
+}

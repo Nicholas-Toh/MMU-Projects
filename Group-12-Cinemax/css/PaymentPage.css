@@ -1,0 +1,68 @@
+#paymentCards *
+{
+	width: 350px;
+	display: block;
+	margin: 0.2em 0em 2em 0em;
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
+	text-align: center;
+}
+
+#paymentAmount
+{
+	width: 600px;
+	display: block;
+	margin: 3em 0em 0em 0em;
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
+	text-align: left;
+	color: white;
+}
+
+.smallLabel
+{
+	font-size:1.3em;
+}
+.bigLabel
+{
+	font-size:1.7em;
+}
+
+#paymentContainer
+{
+	width: 600px;
+	display: block;
+	margin: 3em 0em 3em 0em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#paymentForm
+{
+	text-align:center;
+}
+
+.formField
+{
+	background-color:#A1A1A1;
+	margin: 0.4em 0em 0.4em 0em;
+	outline: none;
+	width: 400px;
+}
+
+#payButton
+{
+	display:block;
+	margin: 1em auto;
+	font-family: Arial, sans-serif;
+    font-size: 1em;
+    color: white;
+    background-color: #F55267;
+    border-radius: 5px;
+	clear: both;
+	outline: none;
+	width: 200px;
+	height: 40px;	
+}

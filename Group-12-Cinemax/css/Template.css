@@ -1,0 +1,110 @@
+a, u {
+    text-decoration: none;
+}
+
+body {
+    background-color: #3F3F3F;
+}
+
+header{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+#logo{
+    display: flex;
+    width: 200px;
+    align-self: center;
+    flex-wrap: wrap;
+
+}
+
+nav{
+    display: flex;
+    width: 70%;
+    align-self: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+nav ul li a{
+    color: white;
+    font-size: 1.5em;
+    padding: 0px 20px;
+    font-family: Arial, sans-serif;
+    width: 25%;
+}
+
+#member{
+    display: flex;
+    width: auto;
+    align-self: center;
+    flex-wrap: wrap;
+}
+
+#member ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+#member ul li a{
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    color: white;
+    background-color: #F55267;
+    width: 40%;
+    padding: 10px;
+    margin: 100px 20px 0 0;
+    border-radius: 10px;
+    
+}
+
+footer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+#connect{
+    display: flex;
+    width: auto;
+    flex-direction: column;
+}
+
+#connect ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#connect ul li{
+    color: white;
+    margin-right: 10px;
+}
+
+#faq {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    flex-direction: column;
+    color: white;
+}
+
+#faq a{
+    color: white;
+    align-self: flex-end;
+    margin-right: 10px;
+}

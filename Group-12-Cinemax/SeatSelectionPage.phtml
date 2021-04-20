@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/seat-selection.css">
+    <title>Cinemax - Seat Selection</title>
+</head>
+<body>
+    <script>
+        function totalSelectedSeatCount(){
+            const selectedSeats = document.querySelectorAll('.selected');
+            const selectedSeatsCounts = selectedSeats.length;
+            totalTicket.innerText = selectedSeatsCounts;
+            ticketPrice.innerText = selectedSeatsCounts * 10;
+        }
+
+        window.addEventListener ('click', function(e){
+            if (e.target.classList.contains('available')){
+            e.target.classList.toggle('selected');
+            totalSelectedSeatCount()
+            }
+        });
+
+        function submitSeat(){
+            let selectedDom = document.getElementsByClassName("selected");
+            let selected = [];
+            let selectedSeatsCounts = selectedDom.length;
+            let ticketPrice = parseFloat(selectedSeatsCounts)*10;
+            let movieId = <?php echo $movieDetails['id']; ?>;
+            let showtimeId = <?php echo $movieSession['id']; ?>;
+            for(let i =0; i<selectedDom.length; i++){
+               selected.push(selectedDom[i].id);
+            }
+            $.post('seat-selection-order.php', {
+                seatSelected: selected,
+                ticket: selectedSeatsCounts,
+                movieId : movieId,
+                showtimeId : showtimeId,
+                ticketPrice : ticketPrice
+            }, function(response) {
+				console.log(response);
+                if(response == "Pass"){
+                    window.location.href='Concessions.php'
+                }
+            });
+        }
+
+    </script>
+    <?php
+      require_once("MainPageHeader.php");
+    ?>
+    <h1> Select Seats </h1>
+    <div id="MovieDetails">
+        <div class="imageContainer">
+            <?php echo '<img src="./assets/movie-posters/'.$movieDetails['poster'].'" class="selected_movie_poster"/>' ?>
+        </div>
+        <div class="detailsContainer">
+            <p>Movie name: <?php echo $movieDetails['name'] ?><br />Show time: <?php echo $movieSession['showtime'] ?><br />Date: <?php echo $movieSession['date'] ?><br />Day: <?php $temp=date_create($movieSession['showtime']); echo date_format($temp,'l') ?><br />Hall number: <?php echo $hallDetails['name'] ?><br />Duration: <?php echo $movieDetails['runtime'] ?></p>   
+        </div>
+    </div>
+    <div id="Legend">
+        <div class="legendContainer">
+            <div class="Available">
+            </div>
+            <p class="Available-text"> Available</p>
+        </div>
+        <div class="legendContainer">
+            <div class="Selected">
+            </div>
+            <p class="Selected-text"> Selected</p>
+        </div>
+        <div class="legendContainer">
+            <div class="Sold">
+            </div>
+            <p class="Sold-text"> Sold</p>
+        </div>
+    </div>
+    <div id="SeatSelection">
+        <div id="HallScreen">
+            <div id="ScreenContainer">
+                <p>Screen</p>
+            </div>
+            <div id="TicketPrice">
+                <div>
+                    <span> No of ticket :</span> <span id="totalTicket">0</span>
+                </div>
+                <div>
+                    <span> Price : RM </span><span id="ticketPrice">0</span>
+                </div>
+            </div>
+            <div id="SeatLayout">
+                <?php
+                   foreach($hallSeat as $key){
+                       echo '<div class="row">';
+                       foreach($key as $seat){ ?>
+                        <?php if(count($bookedSeat)){
+                            if($seat['id'] == $bookedSeat[0]){
+                                array_shift($bookedSeat); ?>
+                                <div class="seat sold" id=<?php echo $seat['id'] ?>><?php echo $seat['seat_row'] ?><?php echo $seat['seat_number'] ?></div>
+                            <?php }else{ ?>
+                                <div class="seat available" id=<?php echo $seat['id'] ?>><?php echo $seat['seat_row'] ?><?php echo $seat['seat_number'] ?></div>
+                            <?php }
+                        }else{ ?>
+                            <div class="seat available" id=<?php echo $seat['id'] ?>><?php echo $seat['seat_row'] ?><?php echo $seat['seat_number'] ?></div>
+                        <?php }
+                       }
+                       echo '</div>';
+                   }
+                ?>
+            </div>
+            <div id="ConfirmContainer">
+                <button type='button' onclick="submitSeat()">Continue</button>
+            </div>
+        </div>
+    </div>
+    <?php
+		require_once("MainPageFooter.php");
+	?>
+</body>
+</html>

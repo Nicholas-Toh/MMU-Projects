@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cinemax - Sign Up</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/jack.css'>
+</head>
+<body>
+    <div class="centerPosition" style="height:85%">
+        <table class="centerPosition" style="top:0%">
+            <tr>
+                <td class="halfsize">
+                    <div  class ="fullsize center ">
+                        <h1 style="color: white;">
+                            Sign up
+                        </h1>
+						<div>
+							<?php 	if (!empty($errorMessages))
+									{
+										foreach($errorMessages as $errMessage)
+										{
+							?>				<p class="errorMessage"><?=$errMessage?></p>
+							<?php 		}
+									}?>
+						</div>
+                        <form method="POST" action="ValidateSignUp.php">
+                            <input type="text" class="formField bigLabel" id="signUpName" name="signUpName" placeholder="Name" required><br>
+                            <input type="email" class="formField bigLabel" id="signUpEmail" name="signUpEmail" placeholder="Email" required><br>
+                            <input type="text" class="formField bigLabel" id="signUpMobile" name="signUpMobile" placeholder="Mobile Number" required><br>
+                            <input type="password" class="formField bigLabel" id="signUpPassword" name="signUpPassword" placeholder="Password" required><br>
+			                <input type="password" class="formField bigLabel" id="signUpRePassword" name="signUpRePassword" placeholder="Re-enter Password" required><br>
+                            <input type="submit" class="redButton" value="Sign Up" onclick="validatePassword()">
+                        </form>
+                        <a href="SignIn.php"><button class="redButton" >Log In</button></a>
+                    </div>
+                </td>
+                <td class="halfsize">
+                    <div class="fullsize center">
+                        <a href="HomePage.php"><img  class="logo" src="assets/logo-red-and-white.png"/></a>
+                        <h2 style="color: white;">Welcome to Cinemax</h2>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <?php
+        require_once("MainPageFooter.php");
+    ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha1/0.6.0/sha1.min.js" integrity="sha512-q6FuE4ifzTygTD/ug8CFnAFXl+i1zXqBWP6flRAuSWjaXrFu4Cznk8Xr+VrWMyi7fSatbssh7ufobAetvXK8Pg==" crossorigin="anonymous"></script>
+<script>
+    var password = document.getElementById("signUpPassword"), confirm_password = document.getElementById("signUpRePassword");
+    function hashing(){
+        var pw = document.getElementById("signUpPassword").value+ '<?=SALT?>';
+        var pw2 = document.getElementById("signUpRePassword").value+ '<?=SALT?>';
+        console.log(pw);
+        var hashed_pw = sha1(pw);
+        var hashed_pw2 = sha1(pw2);
+        document.getElementById("signUpPassword").value = hashed_pw;
+        document.getElementById("signUpRePassword").value = hashed_pw2;
+    } 
+
+    function validatePassword(){
+    if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Don't Match");
+    } else {
+        confirm_password.setCustomValidity('');
+        hashing();
+    }
+    }
+
+</script>
+</body>
+</html>

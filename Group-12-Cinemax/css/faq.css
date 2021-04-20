@@ -1,0 +1,26 @@
+body {
+  background-color: #3F3F3F;
+  color: white;
+  font-family: "Arial", Times, serif;
+
+
+}
+
+header{
+  position: relative;
+}
+
+
+.textContainer p {
+  color: #F55267;
+}
+
+.textContainer {
+  padding-left: 25%;
+  padding-right: 25%;
+}
+
+h1 {
+  text-align: center;
+  color: #F55267;
+}

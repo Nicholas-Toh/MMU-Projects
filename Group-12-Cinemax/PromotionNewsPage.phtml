@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cinemax - Promotions and News</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/jack.css'>
+</head>
+<body>
+    <?php
+		require_once("MainPageHeader.php");
+	?>
+    <div class="center">
+        <table class="center">
+            <tr>
+                <td class="center">
+                    <?php if(!empty($banner)){
+                            foreach($banner as $imagePath){
+                    ?>    
+                                <div class="banner">
+                                    <img style="width:100%"src="assets/promotion-news-page/<?php echo $imagePath?>">
+                                </div>                        
+                    <?php    }
+                        }
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img style="width:80%" src="assets/promotion-news-page/news-header.png"/>
+                    <?php if(!empty($news)){
+                            foreach($news as $element){
+                    ?>
+                                <h2 class="banner "style="text-align:left; color:white" ><?php echo $element["title"]?></h2>
+								<div class="banner" style="text-align:left; color:black; font-size:0.9em" ><i>Admin, <?php echo $element["date"]?></i></div>
+                                <p class="banner" style="text-align:left; color:white" ><?php echo $element["article"]?></p>
+                    <?php        }
+                    }?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php
+                        require_once("MainPageFooter.php");
+                    ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

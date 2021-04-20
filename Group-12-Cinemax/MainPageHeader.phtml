@@ -1,0 +1,67 @@
+<head>
+	<link rel='stylesheet' type='text/css' media='screen' href='css/MainPage.css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).on('click', '.redirect-link', function(event)
+		{
+			//TODO: Ask user to confirm whether to cancel order
+			event.stopPropagation();
+			event.stopImmediatePropagation();
+			var url = $(this).attr('href');
+			console.log("lol");
+			setTimeout(function(){},1000);
+			(function()
+			{
+				$.post("cancel_order.php",
+				{
+				},
+				function(response)
+				{
+					console.log(response);
+					var res = JSON.parse(response);
+					
+					if (res.success == true)
+					{
+						window.location.replace(url);
+					}
+				});
+			})();
+			return false;
+			
+		}); 
+	</script>
+</head>
+<header>
+	<div id='logo'>
+		<figure>
+			<a class="redirect-link" href="HomePage.php"><img src="assets/logo-red-and-white.png" alt="Logo" style="width:100px"></a>
+		</figure>
+	</div>
+	<nav>
+		<ul>
+			<li><a class="redirect-link" href="Showtime.php">Showtimes</a></li>
+			<li><a class="redirect-link" href="PromotionNews.php">Promotion and News</a></li>
+			<li><a class="redirect-link" href="AboutUs.php">About Us</a></li>
+			<li><a class="redirect-link" href="Profile.php">Profile</a></li>
+		</ul>
+	</nav>
+	<div id='member'>
+		<?php if (!$userLoggedIn):?>
+			<div>
+			<ul>
+				<li><a href="SignIn.php" class="member-button">Login</a></li>
+				<li><a href="SignUp.php" class="member-button">Sign Up</a></li>
+			</ul>
+			</div>
+		<?php else : ?>
+			<div id="profileContainer">
+				<img id="profileIcon" src="assets/menu/profile-user.png">
+				<p>Welcome, <?=$username?>!</p>
+				<ul>
+					<li><a class="redirect-link" href="#" class="member-button">Settings</a></li>
+					<li><a class="redirect-link" href="logout.php" class="member-button">Log Out</a></li>
+				</ul>
+			</div>
+		<?php endif; ?>
+	</div>
+</header>

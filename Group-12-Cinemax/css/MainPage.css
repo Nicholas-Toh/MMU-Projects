@@ -1,0 +1,168 @@
+a, u {
+    text-decoration: none;
+}
+
+body {
+    background-color: #3F3F3F;
+	font-family: Arial, sans-serif;
+}
+
+header{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+#logo{
+    display: flex;
+    width: 200px;
+    align-self: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+nav{
+    display: flex;
+    width: 70%;
+    align-self: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+nav ul li a{
+    color: white;
+    font-size: 2vw;
+    padding: 0px 20px;
+    font-family: Arial, sans-serif;
+    width: 25%;
+}
+
+#member{
+    display: flex;
+    min-width: 240px;
+    align-self: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+#member ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+#member ul li a{
+    font-family: Arial, sans-serif;
+    font-size: 1vw;
+    color: white;
+    background-color: #F55267;
+    width: 40%;
+    padding: 10px;
+    margin: 100px 20px 0 0;
+    border-radius: 10px;
+    
+}
+
+footer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-end;
+	font-size: 0.8vw;
+
+}
+
+#connect{
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+}
+
+#connect ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#connect ul li{
+    color: white;
+    margin-right: 10px;
+}
+
+#faq {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    flex-direction: column;
+    color: white;
+
+}
+
+#faq a{
+    color: white;
+    align-self: flex-end;
+    margin-right: 10px;
+}
+
+.pageTitle
+{
+	color: #F55267;
+	font-size: 1.3em;
+    font-family: Arial, sans-serif;
+	margin: 0.3em 0em 1em 0em;
+} 
+
+.pageTitleContainer
+{
+	display: block;
+	margin: 0.2vw auto 2vw auto;
+	width: 350px;
+	clear: both;
+	text-align: center;
+}
+
+#profileContainer > *
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#profileContainer p
+{
+	color: white;
+	font-size: 0.8vw;
+}
+
+#profileIcon
+{
+	width:4em;
+}
+
+.errorMessageContainer
+{
+	width: 900px;
+	display: block;
+	margin: 3em 0em 3em 0em;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.errorMessage
+{
+	color: red;
+}

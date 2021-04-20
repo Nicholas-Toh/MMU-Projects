@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function printTicket(data) 
+		{
+			  var mywindow = window.open('', 'new div', 'height=400,width=600');
+			  mywindow.document.write('<html><head><title></title>');
+			  mywindow.document.write('<link rel="stylesheet" href="css/PaymentSuccessPage.css" type="text/css" />');
+			  mywindow.document.write('</head><body >');
+			  mywindow.document.write(data);
+			  mywindow.document.write('</body></html>');
+			  mywindow.document.close();
+			  mywindow.focus();
+			  setTimeout(function(){mywindow.print();mywindow.close();},1000);
+			  
+
+			  return true;
+		}
+	</script>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cinemax - Payment Confirmation</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' href='css/PaymentSuccessPage.css'>
+</head>
+<body>
+    <?php
+		require_once("MainPageHeader.php");
+	?>
+	<div class="pageTitleContainer" id="bigTitle">
+		<p class="pageTitle" id="paymentStatus">Payment Successful</p>
+	</div>
+	<form id="navigate" action="HomePage.php">
+		<input type="submit" id="homeButton" value="Back to Home" form="navigate">
+	</form>
+	<div id="ticketBody">
+		<div id="ticketContainer">
+			<img id="ticket" src="assets/ticket.png" style="width:700px; height:350px;"/>
+			<div class="overlay">
+				<div id="movieDetails">
+					<p id="movieTitle"><?=$movieName?></p>
+					<p>Showtime: <?php echo date('h:i a', strtotime($showtime)); ?></p>
+					<p>Date: <?php echo date('d F, Y', strtotime($date)); ?></p>
+					<p>Hall: <?=$hallName?></p>
+					<p>Seat no.: <?php foreach($seats as $seat) {echo $seat["seat_row"].$seat["seat_number"].' ';}?></p>
+					<p>Payment Reference: <?=$paymentRef?></p>
+				</div>
+			</div>
+		</div>
+		<div id="reminderText">
+			<p>Please collect food or beverage from the counter using this ticket</p>
+		</div>
+		<button id="ticketButton" type="button" onclick="printTicket(document.getElementById('ticketContainer').innerHTML)">Print Ticket</button>
+	</div>
+    <?php
+		require_once("MainPageFooter.php");
+	?>
+</body>
+</html>
